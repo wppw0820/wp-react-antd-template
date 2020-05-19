@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Table, Tag } from "antd";
-import { transactionList } from "@/api/remoteSearch";
+import React, { Component } from "react"
+import { Table, Tag } from "antd"
+import { transactionList } from "@/api/remoteSearch"
 
 const columns = [
   {
@@ -27,27 +27,27 @@ const columns = [
       </Tag>
     ),
   },
-];
+]
 
 class TransactionTable extends Component {
-  _isMounted = false;   // 这个变量是用来标志当前组件是否挂载
+  _isMounted = false   // 这个变量是用来标志当前组件是否挂载
   state = {
     list: [],
-  };
+  }
   fetchData = () => {
     transactionList().then((response) => {
-      const list = response.data.data.items.slice(0, 13);
+      const list = response.data.data.items.slice(0, 13)
       if (this._isMounted) { 
-        this.setState({ list });
+        this.setState({ list })
       }
-    });
-  };
+    })
+  }
   componentDidMount() {
-    this._isMounted = true;
-    this.fetchData();
+    this._isMounted = true
+    this.fetchData()
   }
   componentWillUnmount() {
-    this._isMounted = false;
+    this._isMounted = false
   }
   render() {
     return (
@@ -56,8 +56,8 @@ class TransactionTable extends Component {
         dataSource={this.state.list}
         pagination={false}
       />
-    );
+    )
   }
 }
 
-export default TransactionTable;
+export default TransactionTable

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Card, Row, Col } from 'antd'
-import { EditorState, convertToRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import draftToHtml from 'draftjs-to-html';
-import draftToMarkdown from 'draftjs-to-markdown';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { EditorState, convertToRaw } from 'draft-js'
+import { Editor } from 'react-draft-wysiwyg'
+import draftToHtml from 'draftjs-to-html'
+import draftToMarkdown from 'draftjs-to-markdown'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import "./index.less"
 class RichTextEditor extends Component {
   state = {
@@ -13,10 +13,10 @@ class RichTextEditor extends Component {
   onEditorStateChange = (editorState) => {
     this.setState({
       editorState,
-    });
-  };
+    })
+  }
   render() { 
-    const { editorState } = this.state;
+    const { editorState } = this.state
     return ( 
       <div>
         <Card bordered={false}>
@@ -43,8 +43,8 @@ class RichTextEditor extends Component {
           </Col>
         </Row>
       </div>
-     );
+     )
   }
 }
 
-export default RichTextEditor;
+export default RichTextEditor

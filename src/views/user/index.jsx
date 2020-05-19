@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Card, Button, Table, message, Divider } from "antd";
-import { getUsers, deleteUser, editUser, addUser } from "@/api/user";
+import React, { Component } from "react"
+import { Card, Button, Table, message, Divider } from "antd"
+import { getUsers, deleteUser, editUser, addUser } from "@/api/user"
 import TypingCard from '@/components/TypingCard'
 import EditUserForm from "./forms/edit-user-form"
 import AddUserForm from "./forms/add-user-form"
-const { Column } = Table;
+const { Column } = Table
 class User extends Component {
   state = {
     users: [],
@@ -13,7 +13,7 @@ class User extends Component {
     currentRowData: {},
     addUserModalVisible: false,
     addUserModalLoading: false,
-  };
+  }
   getUsers = async () => {
     const result = await getUsers()
     const { users, status } = result.data
@@ -27,8 +27,8 @@ class User extends Component {
     this.setState({
       currentRowData:Object.assign({}, row),
       editUserModalVisible: true,
-    });
-  };
+    })
+  }
 
   handleDeleteUser = (row) => {
     const { id } = row
@@ -38,60 +38,60 @@ class User extends Component {
     }
     deleteUser({id}).then(res => {
       message.success("删除成功")
-      this.getUsers();
+      this.getUsers()
     })
   }
   
   handleEditUserOk = _ => {
-    const { form } = this.editUserFormRef.props;
+    const { form } = this.editUserFormRef.props
     form.validateFields((err, values) => {
       if (err) {
-        return;
+        return
       }
-      console.log('Received values of form: ', values);
-      this.setState({ editModalLoading: true, });
+      console.log('Received values of form: ', values)
+      this.setState({ editModalLoading: true, })
       editUser(values).then((response) => {
-        form.resetFields();
-        this.setState({ editUserModalVisible: false, editUserModalLoading: false });
+        form.resetFields()
+        this.setState({ editUserModalVisible: false, editUserModalLoading: false })
         message.success("编辑成功!")
         this.getUsers()
       }).catch(e => {
         message.success("编辑失败,请重试!")
       })
       
-    });
-  };
+    })
+  }
 
   handleCancel = _ => {
     this.setState({
       editUserModalVisible: false,
       addUserModalVisible: false,
-    });
-  };
+    })
+  }
 
   handleAddUser = (row) => {
     this.setState({
       addUserModalVisible: true,
-    });
-  };
+    })
+  }
 
   handleAddUserOk = _ => {
-    const { form } = this.addUserFormRef.props;
+    const { form } = this.addUserFormRef.props
     form.validateFields((err, values) => {
       if (err) {
-        return;
+        return
       }
-      this.setState({ addUserModalLoading: true, });
+      this.setState({ addUserModalLoading: true, })
       addUser(values).then((response) => {
-        form.resetFields();
-        this.setState({ addUserModalVisible: false, addUserModalLoading: false });
+        form.resetFields()
+        this.setState({ addUserModalVisible: false, addUserModalLoading: false })
         message.success("添加成功!")
         this.getUsers()
       }).catch(e => {
         message.success("添加失败,请重试!")
       })
-    });
-  };
+    })
+  }
   componentDidMount() {
     this.getUsers()
   }
@@ -138,8 +138,8 @@ class User extends Component {
           onOk={this.handleAddUserOk}
         />  
       </div>
-    );
+    )
   }
 }
 
-export default User;
+export default User

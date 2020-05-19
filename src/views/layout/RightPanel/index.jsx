@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Drawer, Switch, Row, Col, Divider, Alert, Icon, Button } from "antd";
-import { toggleSettingPanel, changeSetting } from "@/store/actions";
-import clip from "@/utils/clipboard";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Drawer, Switch, Row, Col, Divider, Alert, Icon, Button } from "antd"
+import { toggleSettingPanel, changeSetting } from "@/store/actions"
+import clip from "@/utils/clipboard"
 class RightPanel extends Component {
   state = {
     sidebarLogo: true,
     fixedHeader: true,
     tagsView: true,
-  };
+  }
   sidebarLogoChange = (checked) => {
-    this.setState({ sidebarLogo: checked });
-    this.props.changeSetting({ key: "sidebarLogo", value: checked });
-  };
+    this.setState({ sidebarLogo: checked })
+    this.props.changeSetting({ key: "sidebarLogo", value: checked })
+  }
   fixedHeaderChange = (checked) => {
-    this.setState({ fixedHeader: checked });
-    this.props.changeSetting({ key: "fixedHeader", value: checked });
-  };
+    this.setState({ fixedHeader: checked })
+    this.props.changeSetting({ key: "fixedHeader", value: checked })
+  }
   tagsViewChange = (checked) => {
-    this.setState({ tagsView: checked });
-    this.props.changeSetting({ key: "tagsView", value: checked });
-  };
+    this.setState({ tagsView: checked })
+    this.props.changeSetting({ key: "tagsView", value: checked })
+  }
   handleCopy = (e) => {
     let config = `
     export default {
@@ -29,9 +29,9 @@ class RightPanel extends Component {
       fixedHeader: ${this.state.fixedHeader},
       tagsView: ${this.state.tagsView},
     }
-    `;
-    clip(config, e);
-  };
+    `
+    clip(config, e)
+  }
   render() {
     const {
       settingPanelVisible,
@@ -39,7 +39,7 @@ class RightPanel extends Component {
       sidebarLogo,
       fixedHeader,
       tagsView,
-    } = this.props;
+    } = this.props
     return (
       <div className="rightSettings">
         <Drawer
@@ -105,7 +105,7 @@ class RightPanel extends Component {
                 style={{ width: "100%" }}
                 icon="copy"
                 onClick={(e) => {
-                  this.handleCopy(e);
+                  this.handleCopy(e)
                 }}
               >
                 拷贝配置
@@ -114,7 +114,7 @@ class RightPanel extends Component {
           </Row>
         </Drawer>
       </div>
-    );
+    )
   }
 }
 
@@ -122,9 +122,9 @@ const mapStateToProps = (state) => {
   return {
     ...state.app,
     ...state.settings,
-  };
-};
+  }
+}
 
 export default connect(mapStateToProps, { toggleSettingPanel, changeSetting })(
   RightPanel
-);
+)

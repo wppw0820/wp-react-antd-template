@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Form, Input, DatePicker, Select, Rate, Modal } from "antd";
-import moment from "moment";
-import "moment/locale/zh-cn";
-moment.locale("zh-cn");
+import React, { Component } from "react"
+import { Form, Input, DatePicker, Select, Rate, Modal } from "antd"
+import moment from "moment"
+import "moment/locale/zh-cn"
+moment.locale("zh-cn")
 class EditForm extends Component {
   render() {
     const {
@@ -12,9 +12,9 @@ class EditForm extends Component {
       form,
       confirmLoading,
       currentRowData,
-    } = this.props;
-    const { getFieldDecorator } = form;
-    const { id, author, date, readings, star, status, title } = currentRowData;
+    } = this.props
+    const { getFieldDecorator } = form
+    const { id, author, date, readings, star, status, title } = currentRowData
     const formItemLayout = {
       labelCol: {
         sm: { span: 4 },
@@ -22,7 +22,7 @@ class EditForm extends Component {
       wrapperCol: {
         sm: { span: 16 },
       },
-    };
+    }
     return (
       <Modal
         title="编辑"
@@ -76,8 +76,8 @@ class EditForm extends Component {
           </Form.Item>
         </Form>
       </Modal>
-    );
+    )
   }
 }
 
-export default Form.create({ name: "EditForm" })(EditForm);
+export default Form.create({ name: "EditForm" })(EditForm)

@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import { Form, Input, Select, Modal } from "antd";
-import { reqValidatUserID } from "@/api/user";
-const { TextArea } = Input;
+import React, { Component } from "react"
+import { Form, Input, Select, Modal } from "antd"
+import { reqValidatUserID } from "@/api/user"
+const { TextArea } = Input
 class AddUserForm extends Component {
   validatUserID = async (rule, value, callback) => {
     if (value) {
       if (!/^[a-zA-Z0-9]{1,6}$/.test(value)) {
-        callback("用户ID必须为1-6位数字或字母组合");
+        callback("用户ID必须为1-6位数字或字母组合")
       }
-      let res = await reqValidatUserID(value);
-      const { status } = res.data;
+      let res = await reqValidatUserID(value)
+      const { status } = res.data
       if (status) {
-        callback("该用户ID已存在");
+        callback("该用户ID已存在")
       }
     } else {
-      callback("请输入用户ID");
+      callback("请输入用户ID")
     }
-    callback();
-  };
+    callback()
+  }
   render() {
-    const { visible, onCancel, onOk, form, confirmLoading } = this.props;
-    const { getFieldDecorator } = form;
+    const { visible, onCancel, onOk, form, confirmLoading } = this.props
+    const { getFieldDecorator } = form
     const formItemLayout = {
       labelCol: {
         sm: { span: 4 },
@@ -28,7 +28,7 @@ class AddUserForm extends Component {
       wrapperCol: {
         sm: { span: 16 },
       },
-    };
+    }
     return (
       <Modal
         title="编辑"
@@ -64,8 +64,8 @@ class AddUserForm extends Component {
           </Form.Item>
         </Form>
       </Modal>
-    );
+    )
   }
 }
 
-export default Form.create({ name: "AddUserForm" })(AddUserForm);
+export default Form.create({ name: "AddUserForm" })(AddUserForm)

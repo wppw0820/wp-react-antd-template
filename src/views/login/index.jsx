@@ -1,62 +1,62 @@
-import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
-import { Form, Icon, Input, Button, message, Spin } from "antd";
-import { connect } from "react-redux";
-import DocumentTitle from "react-document-title";
-import "./index.less";
-import { login, getUserInfo } from "@/store/actions";
+import React, { Component } from "react"
+import { Redirect } from "react-router-dom"
+import { Form, Icon, Input, Button, message, Spin } from "antd"
+import { connect } from "react-redux"
+import DocumentTitle from "react-document-title"
+import "./index.less"
+import { login, getUserInfo } from "@/store/actions"
 
 class Login extends Component {
   state = {
     loading: false,
-  };
+  }
   handleSubmit = (event) => {
     // 阻止事件的默认行为
-    event.preventDefault();
+    event.preventDefault()
 
     // 对所有表单字段进行检验
     this.props.form.validateFields(async (err, values) => {
       // 检验成功
       if (!err) {
-        const { username, password } = values;
-        this.login(username, password);
+        const { username, password } = values
+        this.login(username, password)
       } else {
-        console.log("检验失败!");
+        console.log("检验失败!")
       }
-    });
-  };
+    })
+  }
   login = (username, password) => {
-    const { login } = this.props;
+    const { login } = this.props
     // 登录完成后 发送请求 调用接口获取用户信息
-    this.setState({ loading: true });
+    this.setState({ loading: true })
     login(username, password)
       .then((data) => {
-        // this.setState({ loading: false });
-        message.success("登录成功");
-        this.getUserInfo(data.token);
+        // this.setState({ loading: false })
+        message.success("登录成功")
+        this.getUserInfo(data.token)
       })
       .catch((error) => {
-        this.setState({ loading: false });
-        message.error(error);
-      });
-  };
+        this.setState({ loading: false })
+        message.error(error)
+      })
+  }
   // 获取用户信息
   getUserInfo = (token) => {
-    const { getUserInfo } = this.props;
+    const { getUserInfo } = this.props
     getUserInfo(token)
       .then((data) => {})
       .catch((error) => {
-        message.error(error);
-      });
-  };
+        message.error(error)
+      })
+  }
 
   render() {
     // 如果用户已经登陆, 自动跳转到管理界面
-    const { token } = this.props;
+    const { token } = this.props
     if (token) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to="/dashboard" />
     }
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = this.props.form
     return (
       <DocumentTitle title={"用户登录"}>
         <div className="login-container">
@@ -111,12 +111,12 @@ class Login extends Component {
           </Form>
         </div>
       </DocumentTitle>
-    );
+    )
   }
 }
 
-const WrapLogin = Form.create()(Login);
+const WrapLogin = Form.create()(Login)
 
 export default connect((state) => state.user, { login, getUserInfo })(
   WrapLogin
-);
+)

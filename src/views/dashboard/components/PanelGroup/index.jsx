@@ -1,7 +1,7 @@
-import React from "react";
-import { Row, Col, Icon } from "antd";
-import CountUp from "react-countup";
-import "./index.less";
+import React from "react"
+import { Row, Col, Icon } from "antd"
+import CountUp from "react-countup"
+import "./index.less"
 const PanelGroup = (props) => {
   const chartList = [
     {
@@ -28,7 +28,7 @@ const PanelGroup = (props) => {
       num: 13600,
       color: "#f6ab40",
     },
-  ];
+  ]
   return (
     <div className="panel-group-container">
       <Row gutter={40} className="panel-group">
@@ -58,7 +58,7 @@ const PanelGroup = (props) => {
         ))}
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default PanelGroup;
+export default PanelGroup

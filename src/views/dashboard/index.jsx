@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Row, Col } from "antd";
-import "./index.less";
-import PanelGroup from "./components/PanelGroup";
-import LineChart from "./components/LineChart";
-import BarChart from "./components/BarChart";
-import RaddarChart from "./components/RaddarChart";
-import PieChart from "./components/PieChart";
-import TransactionTable from "./components/TransactionTable";
-import BoxCard from "./components/BoxCard";
+import React, { Component } from "react"
+import { Row, Col } from "antd"
+import "./index.less"
+import PanelGroup from "./components/PanelGroup"
+import LineChart from "./components/LineChart"
+import BarChart from "./components/BarChart"
+import RaddarChart from "./components/RaddarChart"
+import PieChart from "./components/PieChart"
+import TransactionTable from "./components/TransactionTable"
+import BoxCard from "./components/BoxCard"
 
 const lineChartData = {
   "New Visits": {
@@ -26,15 +26,15 @@ const lineChartData = {
     expectedData: [130, 140, 141, 142, 145, 150, 160],
     actualData: [120, 82, 91, 154, 162, 140, 130],
   },
-};
+}
 class Home extends Component {
   state = {
     lineChartData: lineChartData["New Visits"],
-  };
+  }
 
   handleSetLineChartData = (type) => {
-    this.setState({ lineChartData: lineChartData[type] });
-  };
+    this.setState({ lineChartData: lineChartData[type] })
+  }
   render() {
     return (
       <div className="app-container">
@@ -96,8 +96,8 @@ class Home extends Component {
           </Col>
         </Row>
       </div>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home

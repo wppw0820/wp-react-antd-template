@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { PropTypes } from "prop-types";
-import { connect } from "react-redux";
-import echarts from "@/lib/echarts";
-import { debounce } from "@/utils";
+import React, { Component } from "react"
+import { PropTypes } from "prop-types"
+import { connect } from "react-redux"
+import echarts from "@/lib/echarts"
+import { debounce } from "@/utils"
 
 class KeyboardChart extends Component {
   static propTypes = {
@@ -10,57 +10,57 @@ class KeyboardChart extends Component {
     height: PropTypes.string,
     className: PropTypes.string,
     styles: PropTypes.object,
-  };
+  }
   static defaultProps = {
     width: "100%",
     height: "350px",
     styles: {},
     className: "",
-  };
+  }
   state = {
     chart: null,
-  };
+  }
 
   componentDidMount() {
-    debounce(this.initChart.bind(this), 300)();
-    window.addEventListener("resize", () => this.resize());
+    debounce(this.initChart.bind(this), 300)()
+    window.addEventListener("resize", () => this.resize())
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.sidebarCollapsed !== this.props.sidebarCollapsed) {
-      this.resize();
+      this.resize()
     }
     if (nextProps.chartData !== this.props.chartData) {
-      debounce(this.initChart.bind(this), 300)();
+      debounce(this.initChart.bind(this), 300)()
     }
   }
 
   componentWillUnmount() {
-    this.dispose();
+    this.dispose()
   }
 
   resize() {
-    const chart = this.state.chart;
+    const chart = this.state.chart
     if (chart) {
-      debounce(chart.resize.bind(this), 300)();
+      debounce(chart.resize.bind(this), 300)()
     }
   }
 
   dispose() {
     if (!this.state.chart) {
-      return;
+      return
     }
-    window.removeEventListener("resize", () => this.resize()); // 移除窗口，变化时重置图表
-    this.setState({ chart: null });
+    window.removeEventListener("resize", () => this.resize()) // 移除窗口，变化时重置图表
+    this.setState({ chart: null })
   }
 
   setOptions() {
-    const xAxisData = [];
-    const data = [];
-    const data2 = [];
+    const xAxisData = []
+    const data = []
+    const data2 = []
     for (let i = 0; i < 50; i++) {
-      xAxisData.push(i);
-      data.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
-      data2.push((Math.sin(i / 5) * (i / 5 + 10) + i / 6) * 3);
+      xAxisData.push(i)
+      data.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5)
+      data2.push((Math.sin(i / 5) * (i / 5 + 10) + i / 6) * 3)
     }
     this.state.chart.setOption({
       backgroundColor: "#08263a",
@@ -166,23 +166,23 @@ class KeyboardChart extends Component {
       animationEasing: "elasticOut",
       animationEasingUpdate: "elasticOut",
       animationDelay(idx) {
-        return idx * 20;
+        return idx * 20
       },
       animationDelayUpdate(idx) {
-        return idx * 20;
+        return idx * 20
       },
-    });
+    })
   }
 
   initChart() {
-    if (!this.el) return;
+    if (!this.el) return
     this.setState({ chart: echarts.init(this.el, "macarons") }, () => {
-      this.setOptions(this.props.chartData);
-    });
+      this.setOptions(this.props.chartData)
+    })
   }
 
   render() {
-    const { className, height, width, styles } = this.props;
+    const { className, height, width, styles } = this.props
     return (
       <div
         className={className}
@@ -193,8 +193,8 @@ class KeyboardChart extends Component {
           width,
         }}
       />
-    );
+    )
   }
 }
 
-export default connect((state) => state.app)(KeyboardChart);
+export default connect((state) => state.app)(KeyboardChart)

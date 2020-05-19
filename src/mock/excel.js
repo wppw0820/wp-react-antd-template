@@ -18,4 +18,4 @@ export default {
       data: { items: list }
     }
   },
-};
+}

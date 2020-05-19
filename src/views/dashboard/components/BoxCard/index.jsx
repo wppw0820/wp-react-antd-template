@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Card, Progress } from "antd";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import { Card, Progress } from "antd"
+import { connect } from "react-redux"
 import PanThumb from '@/components/PanThumb'
 import Mallki from '@/components//Mallki'
 import './index.less'
 class BoxCard extends Component {
-  state = {};
+  state = {}
   render() {
     const {avatar} = this.props
     return (
@@ -21,7 +21,7 @@ class BoxCard extends Component {
         >
           <div style={{ position: 'relative' }}>
             <PanThumb image={avatar} className="panThumb" />
-            <Mallki className="mallki-text" text="难凉热血" />
+            <Mallki className="mallki-text" text="xl-wolf" />
             <div style={{paddingTop:"35px"}} className="progress-item">
               <span>Vue</span>
               <Progress percent={70} />
@@ -41,8 +41,8 @@ class BoxCard extends Component {
           </div>
         </Card>
       </div>
-    );
+    )
   }
 }
 
-export default connect((state) => state.user)(BoxCard);
+export default connect((state) => state.user)(BoxCard)

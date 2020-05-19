@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { Table } from "antd";
-import UploadExcelComponent from "@/components/UploadExcel";
+import React, { Component } from "react"
+import { Table } from "antd"
+import UploadExcelComponent from "@/components/UploadExcel"
 class UploadExcel extends Component {
   state = {
     tableData: [],
     tableHeader: [],
-  };
+  }
   handleSuccess = ({ results, header }) => {
     this.setState({
       tableData: results,
       tableHeader: header,
-    });
-  };
+    })
+  }
   render() {
     return (
       <div className="app-container">
@@ -29,8 +29,8 @@ class UploadExcel extends Component {
           dataSource={this.state.tableData}
         />
       </div>
-    );
+    )
   }
 }
 
-export default UploadExcel;
+export default UploadExcel

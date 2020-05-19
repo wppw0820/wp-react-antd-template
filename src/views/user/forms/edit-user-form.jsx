@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Form, Input, Select, Modal } from "antd";
-const { TextArea } = Input;
+import React, { Component } from "react"
+import { Form, Input, Select, Modal } from "antd"
+const { TextArea } = Input
 class EditUserForm extends Component {
   render() {
     const {
@@ -10,9 +10,9 @@ class EditUserForm extends Component {
       form,
       confirmLoading,
       currentRowData,
-    } = this.props;
-    const { getFieldDecorator } = form;
-    const { id, name, role, description } = currentRowData;
+    } = this.props
+    const { getFieldDecorator } = form
+    const { id, name, role, description } = currentRowData
     const formItemLayout = {
       labelCol: {
         sm: { span: 4 },
@@ -20,7 +20,7 @@ class EditUserForm extends Component {
       wrapperCol: {
         sm: { span: 16 },
       },
-    };
+    }
     return (
       <Modal
         title="编辑"
@@ -59,8 +59,8 @@ class EditUserForm extends Component {
           </Form.Item>
         </Form>
       </Modal>
-    );
+    )
   }
 }
 
-export default Form.create({ name: "EditUserForm" })(EditUserForm);
+export default Form.create({ name: "EditUserForm" })(EditUserForm)

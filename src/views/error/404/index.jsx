@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { Button, Row, Col } from "antd";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import { Button, Row, Col } from "antd"
+import { connect } from "react-redux"
 import errImg from '@/assets/images/404.png'
-import "./index.less";
+import "./index.less"
 
 /*
 前台404页面
  */
 class NotFound extends Component {
   goHome = () => {
-    this.props.history.replace("/");
-  };
+    this.props.history.replace("/")
+  }
 
   render() {
     return (
@@ -28,8 +28,8 @@ class NotFound extends Component {
           </div>
         </Col>
       </Row>
-    );
+    )
   }
 }
 
-export default connect()(NotFound);
+export default connect()(NotFound)

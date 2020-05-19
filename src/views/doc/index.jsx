@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import TypingCard from '@/components/TypingCard'
 const Doc = () => {
   const cardContent = `
@@ -9,7 +9,7 @@ const Doc = () => {
     <div className="app-container">
       <TypingCard title='开发文档' source={cardContent}/>
     </div>
-  );
+  )
 }
 
-export default Doc;
+export default Doc

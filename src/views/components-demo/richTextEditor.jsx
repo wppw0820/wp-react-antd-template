@@ -1,6 +1,6 @@
-import React from "react";
-import RichTextEditor from "@/components/RichTextEditor";
-import TypingCard from "@/components/TypingCard";
+import React from "react"
+import RichTextEditor from "@/components/RichTextEditor"
+import TypingCard from "@/components/TypingCard"
 
 const RichTextEditorDemo = () => {
   const cardContent = `
@@ -12,7 +12,7 @@ const RichTextEditorDemo = () => {
       <br />
       <RichTextEditor />
     </div>
-  );
-};
+  )
+}
 
-export default RichTextEditorDemo;
+export default RichTextEditorDemo

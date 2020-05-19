@@ -1,14 +1,14 @@
-import React from "react";
+import React from "react"
 // HashRouter和BrowserRouter区别：HashRouter的url中带有# BrowserRouter的url中不带有#
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { getUserInfo } from "@/store/actions";
-import App from "@/App";
-import Layout from "@/views/layout";
-import Login from "@/views/login";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
+import { connect } from "react-redux"
+import { getUserInfo } from "@/store/actions"
+import App from "@/App"
+import Layout from "@/views/layout"
+import Login from "@/views/login"
 class Router extends React.Component {
   render() {
-    const { token, role, getUserInfo } = this.props;
+    const { token, role, getUserInfo } = this.props
     return (
       <BrowserRouter>
         <App>
@@ -18,12 +18,12 @@ class Router extends React.Component {
               path="/"
               render={() => {
                 if (!token) {
-                  return <Redirect to="/login" />;
+                  return <Redirect to="/login" />
                 } else {
                   if (role) {
-                    return <Layout />;
+                    return <Layout />
                   } else {
-                    getUserInfo(token).then(() => <Layout />);
+                    getUserInfo(token).then(() => <Layout />)
                   }
                 }
               }}
@@ -31,8 +31,8 @@ class Router extends React.Component {
           </Switch>
         </App>
       </BrowserRouter>
-    );
+    )
   }
 }
 
-export default connect((state) => state.user, { getUserInfo })(Router);
+export default connect((state) => state.user, { getUserInfo })(Router)

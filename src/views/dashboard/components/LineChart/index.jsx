@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { PropTypes } from "prop-types";
-import { connect } from "react-redux";
-import echarts from "@/lib/echarts";
-import { debounce } from "@/utils";
+import React, { Component } from "react"
+import { PropTypes } from "prop-types"
+import { connect } from "react-redux"
+import echarts from "@/lib/echarts"
+import { debounce } from "@/utils"
 
 class LineChart extends Component {
   static propTypes = {
@@ -11,47 +11,47 @@ class LineChart extends Component {
     className: PropTypes.string,
     styles: PropTypes.object,
     chartData: PropTypes.object.isRequired,
-  };
+  }
   static defaultProps = {
     width: "100%",
     height: "350px",
     styles: {},
     className: "",
-  };
+  }
   state = {
     chart: null,
-  };
+  }
 
   componentDidMount() {
-    debounce(this.initChart.bind(this), 300)();
-    window.addEventListener("resize", () => this.resize());
+    debounce(this.initChart.bind(this), 300)()
+    window.addEventListener("resize", () => this.resize())
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.sidebarCollapsed !== this.props.sidebarCollapsed) {
-      this.resize();
+      this.resize()
     }
     if (nextProps.chartData !== this.props.chartData) {
-      debounce(this.initChart.bind(this), 300)();
+      debounce(this.initChart.bind(this), 300)()
     }
   }
 
   componentWillUnmount() {
-    this.dispose();
+    this.dispose()
   }
 
   resize() {
-    const chart = this.state.chart;
+    const chart = this.state.chart
     if (chart) {
-      debounce(chart.resize.bind(this), 300)();
+      debounce(chart.resize.bind(this), 300)()
     }
   }
 
   dispose() {
     if (!this.state.chart) {
-      return;
+      return
     }
-    window.removeEventListener("resize", () => this.resize()); // 移除窗口，变化时重置图表
-    this.setState({ chart: null });
+    window.removeEventListener("resize", () => this.resize()) // 移除窗口，变化时重置图表
+    this.setState({ chart: null })
   }
 
   setOptions({ expectedData, actualData } = {}) {
@@ -125,18 +125,18 @@ class LineChart extends Component {
           animationEasing: "quadraticOut",
         },
       ],
-    });
+    })
   }
 
   initChart() {
-    if (!this.el) return;
+    if (!this.el) return
     this.setState({ chart: echarts.init(this.el,"macarons") }, () => {
-      this.setOptions(this.props.chartData);
-    });
+      this.setOptions(this.props.chartData)
+    })
   }
 
   render() {
-    const { className, height, width,styles } = this.props;
+    const { className, height, width,styles } = this.props
     return (
       <div
         className={className}
@@ -147,8 +147,8 @@ class LineChart extends Component {
           width,
         }}
       />
-    );
+    )
   }
 }
 
-export default connect(state=>state.app)(LineChart);
+export default connect(state=>state.app)(LineChart)

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 import {
   Table,
   Tag,
@@ -10,13 +10,13 @@ import {
   Divider,
   message,
   Select
-} from "antd";
-import { tableList, deleteItem,editItem } from "@/api/table";
+} from "antd"
+import { tableList, deleteItem,editItem } from "@/api/table"
 import EditForm from "./forms/editForm"
-const { Column } = Table;
-const { Panel } = Collapse;
+const { Column } = Table
+const { Panel } = Collapse
 class TableComponent extends Component {
-  _isMounted = false; // 这个变量是用来标志当前组件是否挂载
+  _isMounted = false // 这个变量是用来标志当前组件是否挂载
   state = {
     list: [],
     loading: false,
@@ -39,24 +39,24 @@ class TableComponent extends Component {
       status: "published",
       title: ""
     }
-  };
+  }
   fetchData = () => {
-    this.setState({ loading: true });
+    this.setState({ loading: true })
     tableList(this.state.listQuery).then((response) => {
-      this.setState({ loading: false });
-      const list = response.data.data.items;
-      const total = response.data.data.total;
+      this.setState({ loading: false })
+      const list = response.data.data.items
+      const total = response.data.data.total
       if (this._isMounted) {
-        this.setState({ list, total });
+        this.setState({ list, total })
       }
-    });
-  };
+    })
+  }
   componentDidMount() {
-    this._isMounted = true;
-    this.fetchData();
+    this._isMounted = true
+    this.fetchData()
   }
   componentWillUnmount() {
-    this._isMounted = false;
+    this._isMounted = false
   }
   filterTitleChange = (e) => {
     let value = e.target.value
@@ -65,24 +65,24 @@ class TableComponent extends Component {
         ...state.listQuery,
         title:value,
       }
-    }));
-  };
+    }))
+  }
   filterStatusChange = (value) => {
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
         status:value,
       }
-    }));
-  };
+    }))
+  }
   filterStarChange  = (value) => {
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
         star:value,
       }
-    }));
-  };
+    }))
+  }
   changePage = (pageNumber, pageSize) => {
     this.setState(
       (state) => ({
@@ -92,10 +92,10 @@ class TableComponent extends Component {
         },
       }),
       () => {
-        this.fetchData();
+        this.fetchData()
       }
-    );
-  };
+    )
+  }
   changePageSize = (current, pageSize) => {
     this.setState(
       (state) => ({
@@ -105,52 +105,52 @@ class TableComponent extends Component {
         },
       }),
       () => {
-        this.fetchData();
+        this.fetchData()
       }
-    );
-  };
+    )
+  }
   handleDelete = (row) => {
     deleteItem({id:row.id}).then(res => {
       message.success("删除成功")
-      this.fetchData();
+      this.fetchData()
     })
   }
   handleEdit = (row) => {
     this.setState({
       currentRowData:Object.assign({}, row),
       editModalVisible: true,
-    });
-  };
+    })
+  }
 
   handleOk = _ => {
-    const { form } = this.formRef.props;
+    const { form } = this.formRef.props
     form.validateFields((err, fieldsValue) => {
       if (err) {
-        return;
+        return
       }
       const values = {
         ...fieldsValue,
         'star': "".padStart(fieldsValue['star'], '★'),
         'date': fieldsValue['date'].format('YYYY-MM-DD HH:mm:ss'),
-      };
-      this.setState({ editModalLoading: true, });
+      }
+      this.setState({ editModalLoading: true, })
       editItem(values).then((response) => {
-        form.resetFields();
-        this.setState({ editModalVisible: false, editModalLoading: false });
+        form.resetFields()
+        this.setState({ editModalVisible: false, editModalLoading: false })
         message.success("编辑成功!")
         this.fetchData()
       }).catch(e => {
         message.success("编辑失败,请重试!")
       })
       
-    });
-  };
+    })
+  }
 
   handleCancel = _ => {
     this.setState({
       editModalVisible: false,
-    });
-  };
+    })
+  }
   render() {
     return (
       <div className="app-container">
@@ -200,12 +200,12 @@ class TableComponent extends Component {
           <Column title="推荐指数" dataIndex="star" key="star" width={195} align="center"/>
           <Column title="状态" dataIndex="status" key="status" width={195} align="center" render={(status) => {
             let color =
-              status === "published" ? "green" : status === "deleted" ? "red" : "";
+              status === "published" ? "green" : status === "deleted" ? "red" : ""
             return (
               <Tag color={color} key={status}>
                 {status}
               </Tag>
-            );
+            )
           }}/>
           <Column title="时间" dataIndex="date" key="date" width={195} align="center"/>
           <Column title="操作" key="action" width={195} align="center"render={(text, row) => (
@@ -237,8 +237,8 @@ class TableComponent extends Component {
           onOk={this.handleOk}
         />  
       </div>
-    );
+    )
   }
 }
 
-export default TableComponent;
+export default TableComponent
