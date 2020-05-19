@@ -4,7 +4,7 @@
     "**/yarn.lock": true,
     "**/package-lock.json": true,
     "**/package.json": false,
-    "**/README.md": true,
+    "**/README.md": false,
     "**/.gitignore": false,
     "**/vue.config.js": false,
     "**/babel.config.js": true,

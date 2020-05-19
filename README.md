@@ -75,7 +75,7 @@
 
 ```
 # 克隆项目
-git clone https://github.com/NLRX-WJC/react-antd-admin-template.git
+git clone https://github.com/xl-wolf/xl-react-antd-template.git
 
 # 进入项目目录
 cd xl-react-antd-template
@@ -83,15 +83,10 @@ cd xl-react-antd-template
 # 安装依赖
 npm install
 
-# 切换淘宝源，解决 npm 下载速度慢的问题
-npm install --registry=https://registry.npm.taobao.org
-
 # 启动服务
 npm start
 ```
 
 启动完成后会自动打开浏览器访问 [http://localhost:3000](http://localhost:3000)， 你看到下面的页面就代表操作成功了。
-
-![](./guide.gif)
 
 接下来你可以修改代码进行业务开发了
