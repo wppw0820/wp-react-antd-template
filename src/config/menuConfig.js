@@ -16,6 +16,36 @@ export default [
     roles: ["admin", "editor"]
   },
   {
+    title: "高德地图",
+    path: "/amap",
+    icon: null,
+    iconBeyondAntd: 'icon-gaodeditu',
+    roles: ["admin", "editor", "guest"]
+  },
+  {
+    title: "百度地图",
+    path: "/bmap",
+    icon: null,
+    iconBeyondAntd: 'icon-baidudituqibiaodianjishijian',
+    roles: ["admin", "editor", "guest"]
+  },
+  {
+    title: "3D",
+    path: "/three",
+    icon: null,
+    iconBeyondAntd: 'icon-D',
+    roles: ["admin", "editor", "guest"],
+    children: [
+      {
+        title: "three01",
+        path: "/three/three01",
+        icon: null,
+        iconBeyondAntd: 'icon-D1',
+        roles: ["admin", "editor", "guest"],
+      }
+    ],
+  },
+  {
     title: "权限测试",
     path: "/permission",
     icon: "lock",

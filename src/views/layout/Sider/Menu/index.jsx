@@ -8,6 +8,7 @@ import { addTag } from "@/store/actions"
 import { getMenuItemInMenuListByProperty } from "@/utils"
 import menuList from "@/config/menuConfig"
 import "./index.less"
+import "@/assets/iconfont/iconfont.css"
 const SubMenu = Menu.SubMenu
 // 重新记录数组顺序
 const reorder = (list, startIndex, endIndex) => {
@@ -45,7 +46,7 @@ class Meun extends Component {
           pre.push(
             <Menu.Item key={item.path}>
               <Link to={item.path}>
-                {item.icon ? <Icon type={item.icon} /> : null}
+                {!item.icon && item.iconBeyondAntd ? <i className={'iconfont '+item.iconBeyondAntd} style={{marginRight:'10px',fontSize:'14px'}}/> : <Icon type={item.icon} />}
                 <span>{item.title}</span>
               </Link>
             </Menu.Item>
@@ -68,7 +69,7 @@ class Meun extends Component {
               key={item.path}
               title={
                 <span>
-                  {item.icon ? <Icon type={item.icon} /> : null}
+                  {!item.icon && item.iconBeyondAntd ? <i className={'iconfont '+item.iconBeyondAntd} style={{marginRight:'10px',fontSize:'14px'}}/> : <Icon type={item.icon} />}
                   <span>{item.title}</span>
                 </span>
               }

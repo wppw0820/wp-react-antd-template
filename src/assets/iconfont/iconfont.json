@@ -1,0 +1,37 @@
+{
+  "id": "1829244",
+  "name": "xl-react-antd-template",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13964922",
+      "name": "3D",
+      "font_class": "D",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "3164598",
+      "name": "百度地图旗标点击事件",
+      "font_class": "baidudituqibiaodianjishijian",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "10246080",
+      "name": "3D",
+      "font_class": "D1",
+      "unicode": "e69c",
+      "unicode_decimal": 59036
+    },
+    {
+      "icon_id": "13933353",
+      "name": "高德地图",
+      "font_class": "gaodeditu",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    }
+  ]
+}
