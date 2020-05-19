@@ -1,6 +1,6 @@
 import React from "react"
 import { Row, Col, Icon } from "antd"
-import CountUp from "react-countup"
+import CountUp from "react-countup" //渲染时让数字拥有动效
 import "./index.less"
 const PanelGroup = (props) => {
   const chartList = [
@@ -34,7 +34,7 @@ const PanelGroup = (props) => {
       <Row gutter={40} className="panel-group">
         {chartList.map((chart, i) => (
           <Col
-            key={i}
+            key={chart.type + i}
             lg={6}
             sm={12}
             xs={12}

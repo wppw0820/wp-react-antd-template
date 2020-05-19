@@ -1,5 +1,5 @@
 import React from "react"
-import clip from "@/utils/clipboard" 
+import clip from "@/utils/clipboard"
 import { Button, Row, Col } from "antd"
 
 const text = `
@@ -25,8 +25,8 @@ const handleCopy = (text, event) => {
 }
 const Clipboard = () => {
   return (
-    <div className="app-container">
-      <h1>点击下方的Copy按钮，可将以下文字复制到剪贴板</h1>
+    <div className="app-container" style={{ color: '#fff' }}>
+      <h1 style={{ color: '#fff' }}>点击下方的Copy按钮，可将以下文字复制到剪贴板</h1>
       <br />
       <Row>
         <Col span={12}>{text}</Col>

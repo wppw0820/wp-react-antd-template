@@ -8,7 +8,7 @@ const Settings = (props) => {
   return (
     <div className="settings-container">
       <Tooltip placement="bottom" title="系统设置">
-        <Icon type="setting" onClick={toggleSettingPanel} />
+        <Icon type="setting" onClick={toggleSettingPanel} style={{color:'#fff'}}/>
       </Tooltip>
     </div>
   )

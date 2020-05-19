@@ -1,6 +1,6 @@
 import React from "react"
 // HashRouter和BrowserRouter区别：HashRouter的url中带有# BrowserRouter的url中不带有#
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom"
+import { HashRouter, Route, Switch, Redirect } from "react-router-dom"
 import { connect } from "react-redux"
 import { getUserInfo } from "@/store/actions"
 import App from "@/App"
@@ -10,7 +10,7 @@ class Router extends React.Component {
   render() {
     const { token, role, getUserInfo } = this.props
     return (
-      <BrowserRouter>
+      <HashRouter>
         <App>
           <Switch>
             <Route exact path="/login" component={Login} />
@@ -30,7 +30,7 @@ class Router extends React.Component {
             />
           </Switch>
         </App>
-      </BrowserRouter>
+      </HashRouter>
     )
   }
 }

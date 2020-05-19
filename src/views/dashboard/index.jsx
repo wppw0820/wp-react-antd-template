@@ -37,13 +37,13 @@ class Home extends Component {
   }
   render() {
     return (
-      <div className="app-container">
-        <a
-          href="https://github.com/NLRX-WJC/react-antd-admin-template"
+      <div id="dashboard" className="app-container">
+        {/* <a
+          href="https://github.com/xl-wolf/xl-react-antd-template.git"
           target="_blank"
           rel="noopener noreferrer"
           className="github-corner"
-        > </a>
+        > </a> */}
         <PanelGroup handleSetLineChartData={this.handleSetLineChartData} />
 
         <LineChart

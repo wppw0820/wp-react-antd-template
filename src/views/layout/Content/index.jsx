@@ -26,7 +26,7 @@ const LayoutContent = (props) => {
   }
   return (
     <DocumentTitle title={getPageTitle(menuList, pathname)}>
-      <Content style={{ height: "calc(100% - 100px)" }}>
+      <Content style={{ height: "calc(100% - 100px)", overflow: 'scroll', backgroundColor: 'rgba(77,77,77,.9)' }}>
         <Switch>
           <Redirect exact from="/" to="/dashboard" />
           {routeList.map((route) => {

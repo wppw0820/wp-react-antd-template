@@ -37,7 +37,7 @@ class FullScreen extends Component {
     return (
       <div className="fullScreen-container">
         <Tooltip placement="bottom" title={title}>
-          <Icon type={type} onClick={this.click} />
+          <Icon type={type} onClick={this.click} style={{color:'#fff'}}/>
         </Tooltip>
       </div>
     )

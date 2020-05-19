@@ -3,6 +3,8 @@ import { PropTypes } from "prop-types"
 import { connect } from "react-redux"
 import echarts from "@/lib/echarts"
 import { debounce } from "@/utils"
+// 引入echarts主题配置文件
+import { _01, _02 } from './themes'
 
 class MixChart extends Component {
   static propTypes = {
@@ -19,6 +21,14 @@ class MixChart extends Component {
   }
   state = {
     chart: null,
+  }
+   // 注册主题
+   registerTheme() {
+    echarts.registerTheme('theme_01', _01)
+    echarts.registerTheme('theme_02', _02)
+  }
+  componentWillMount() {
+    this.registerTheme()
   }
 
   componentDidMount() {
@@ -285,7 +295,7 @@ class MixChart extends Component {
 
   initChart() {
     if (!this.el) return
-    this.setState({ chart: echarts.init(this.el, "macarons") }, () => {
+    this.setState({ chart: echarts.init(this.el, "theme_02") }, () => {
       this.setOptions(this.props.chartData)
     })
   }

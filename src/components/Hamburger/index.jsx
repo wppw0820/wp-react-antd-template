@@ -10,6 +10,7 @@ const Hamburger = (props) => {
       <Icon
         type={sidebarCollapsed ? "menu-unfold" : "menu-fold"}
         onClick={toggleSiderBar}
+        className="folder-ctrl"
       />
     </div>
   )

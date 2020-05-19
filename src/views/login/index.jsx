@@ -44,7 +44,7 @@ class Login extends Component {
   getUserInfo = (token) => {
     const { getUserInfo } = this.props
     getUserInfo(token)
-      .then((data) => {})
+      .then((data) => { })
       .catch((error) => {
         message.error(error)
       })
@@ -100,13 +100,13 @@ class Login extends Component {
                   登录
                 </Button>
               </Form.Item>
-              <Form.Item>
-                <span>账号 : admin 密码 : 随便填</span>
+              {/* <Form.Item>
+                <span>账号 : admin 密码 : 任意</span>
                 <br />
-                <span>账号 : editor 密码 : 随便填</span>
+                <span>账号 : editor 密码 : 任意</span>
                 <br />
-                <span>账号 : guest 密码 : 随便填</span>
-              </Form.Item>
+                <span>账号 : guest 密码 : 任意</span>
+              </Form.Item> */}
             </Spin>
           </Form>
         </div>

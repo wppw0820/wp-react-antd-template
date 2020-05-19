@@ -100,7 +100,7 @@ const LayoutHeader = (props) => {
             <Dropdown overlay={menu}>
               <div>
                 <Avatar shape="square" size="medium" src={avatar} />
-                <Icon style={{ color: "rgba(0,0,0,.3)" }} type="caret-down" />
+                <Icon style={{ color: "rgba(255,255,255,.8)" }} type="caret-down" />
               </div>
             </Dropdown>
           </div>
@@ -117,5 +117,4 @@ const mapStateToProps = (state) => {
     ...state.settings,
   }
 }
-console.log(connect(mapStateToProps, { logout, getUserInfo })(LayoutHeader))
 export default connect(mapStateToProps, { logout, getUserInfo })(LayoutHeader)
