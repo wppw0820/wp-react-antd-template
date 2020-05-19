@@ -1,18 +1,18 @@
 import React from "react";
 import { Card } from "antd";
 import Typing from "@/utils/typing";
-
+// 让文字一个个打印的公共组件
 class TypingCard extends React.Component {
   static defaultProps = {
     title: "何时使用",
     source: "",
     height: 136,
-  };
+  }
   componentDidMount() {
     const typing = new Typing({
       source: this.source,
       output: this.output,
-      delay: 30,
+      delay: this.props.delay || 30,
     });
     typing.start();
   }
@@ -32,8 +32,8 @@ class TypingCard extends React.Component {
         />
         <div ref={(el) => (this.output = el)} />
       </Card>
-    );
+    )
   }
 }
 
-export default TypingCard;
+export default TypingCard

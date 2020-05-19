@@ -105,7 +105,7 @@ class User extends Component {
     const cardContent = `在这里，你可以对系统中的用户进行管理，例如添加一个新用户，或者修改系统中已经存在的用户。`
     return (
       <div className="app-container">
-        <TypingCard title='用户管理' source={cardContent} />
+        <TypingCard title='用户管理' source={cardContent} delay={100}/>
         <br/>
         <Card title={title}>
           <Table bordered rowKey="id" dataSource={users} pagination={false}>

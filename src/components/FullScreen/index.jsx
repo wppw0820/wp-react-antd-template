@@ -18,7 +18,7 @@ class FullScreen extends Component {
   };
   click = () => {
     if (!screenfull.isEnabled) {
-      message.warning("you browser can not work");
+      message.warning("your browser can not work");
       return false;
     }
     screenfull.toggle();

@@ -1,3 +1,4 @@
+// 让文字一个个打印类
 class Typing {
   constructor(opts) {
     this.opts = opts || {};

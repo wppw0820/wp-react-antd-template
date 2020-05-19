@@ -9,10 +9,10 @@ import menuList from "@/config/menuConfig";
 const { Content } = Layout;
 
 const getPageTitle = (menuList, pathname) => {
-  let title = "Ant Design Pro";
-  let item = getMenuItemInMenuListByProperty(menuList, "path", pathname);
+  let title = "xl-react-antd-template";
+  const item = getMenuItemInMenuListByProperty(menuList, "path", pathname);
   if (item) {
-    title = `${item.title} - Ant Design Pro`;
+    title = `${item.title} -- ${title}`;
   }
   return title;
 };
