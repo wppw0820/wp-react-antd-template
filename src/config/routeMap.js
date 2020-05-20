@@ -1,6 +1,8 @@
 import Loadable from 'react-loadable'
 import Loading from '@/components/Loading'
 const Dashboard = Loadable({loader: () => import(/*webpackChunkName:'Dashboard'*/'@/views/dashboard'),loading: Loading})
+const Amap = Loadable({loader: () => import(/*webpackChunkName:'Amap'*/'@/views/amap'),loading: Loading})
+const Bmap = Loadable({loader: () => import(/*webpackChunkName:'Bmap'*/'@/views/bmap'),loading: Loading})
 const Doc = Loadable({loader: () => import(/*webpackChunkName:'Doc'*/'@/views/doc'),loading: Loading})
 const Guide = Loadable({loader: () => import(/*webpackChunkName:'Guide'*/'@/views/guide'),loading: Loading})
 const Explanation = Loadable({loader: () => import(/*webpackChunkName:'Explanation'*/'@/views/permission'),loading: Loading})
@@ -23,6 +25,8 @@ const User = Loadable({loader: () => import(/*webpackChunkName:'User'*/'@/views/
 
 export default [
   { path: "/dashboard", component: Dashboard, roles: ["admin","editor","guest"] },
+  { path: "/amap", component: Amap, roles: ["admin","editor","guest"] },
+  { path: "/bmap", component: Bmap, roles: ["admin","editor","guest"] },
   { path: "/doc", component: Doc, roles: ["admin","editor","guest"] },
   { path: "/guide", component: Guide, roles: ["admin","editor"] },
   { path: "/permission/explanation", component: Explanation, roles: ["admin"] },
