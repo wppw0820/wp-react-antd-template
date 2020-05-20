@@ -1,3 +1,4 @@
+```
 # 简介
 
 [xl-react-antd-template] 是一个基于 `React` 和 `Ant Design` 的后台管理系统模板。它内置了用户登录/登出，动态路由，权限校验，用户管理等典型的业务模型，可以帮助你快速搭建企业级中后台产品原型。
@@ -73,7 +74,6 @@
 ├── .travis.yml               # 自动化CI配置
 └── package.json              # package.json
 
-```
 # 克隆项目
 git clone https://github.com/xl-wolf/xl-react-antd-template.git
 
@@ -85,7 +85,7 @@ npm install
 
 # 启动服务
 npm start
-```
+`
 
 启动完成后会自动打开浏览器访问 [http://localhost:3000](http://localhost:3000)， 你看到下面的页面就代表操作成功了。
 
