@@ -44,7 +44,9 @@ class Login extends Component {
   getUserInfo = (token) => {
     const { getUserInfo } = this.props
     getUserInfo(token)
-      .then((data) => { })
+      .then((data) => {
+        console.log(data)
+      })
       .catch((error) => {
         message.error(error)
       })
@@ -117,6 +119,6 @@ class Login extends Component {
 
 const WrapLogin = Form.create()(Login)
 
-export default connect((state) => state.user, { login, getUserInfo })(
+export default connect(state => state.user, { login, getUserInfo })(
   WrapLogin
 )

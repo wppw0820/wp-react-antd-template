@@ -13,6 +13,7 @@ import {
 } from "antd"
 import { tableList, deleteItem,editItem } from "@/api/table"
 import EditForm from "./forms/editForm"
+import './index.less'
 const { Column } = Table
 const { Panel } = Collapse
 class TableComponent extends Component {
@@ -153,7 +154,7 @@ class TableComponent extends Component {
   }
   render() {
     return (
-      <div className="app-container">
+      <div className="app-container" id='table-module'>
         <Collapse defaultActiveKey={["1"]}>
           <Panel header="筛选" key="1">
             <Form layout="inline">

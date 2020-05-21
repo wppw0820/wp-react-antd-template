@@ -46,7 +46,7 @@ class Meun extends Component {
           pre.push(
             <Menu.Item key={item.path}>
               <Link to={item.path}>
-                {!item.icon && item.iconBeyondAntd ? <i className={'iconfont '+item.iconBeyondAntd} style={{marginRight:'10px',fontSize:'14px'}}/> : <Icon type={item.icon} />}
+              {item.iconBeyondAntd ? <i className={'iconfont '+item.iconBeyondAntd} style={{marginRight:'10px',fontSize:'14px'}}/> : item.icon ? <Icon type={item.icon}/> : null}
                 <span>{item.title}</span>
               </Link>
             </Menu.Item>
@@ -69,7 +69,7 @@ class Meun extends Component {
               key={item.path}
               title={
                 <span>
-                  {!item.icon && item.iconBeyondAntd ? <i className={'iconfont '+item.iconBeyondAntd} style={{marginRight:'10px',fontSize:'14px'}}/> : <Icon type={item.icon} />}
+                  {item.iconBeyondAntd ? <i className={'iconfont '+item.iconBeyondAntd} style={{marginRight:'10px',fontSize:'14px'}}/> : item.icon ? <Icon type={item.icon}/> : null}
                   <span>{item.title}</span>
                 </span>
               }

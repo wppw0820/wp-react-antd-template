@@ -13,6 +13,7 @@ import {
 } from "antd"
 
 import { excelList } from "@/api/excel"
+import './index.less'
 const { Panel } = Collapse
 const columns = [
   {
@@ -132,7 +133,7 @@ class Excel extends Component {
       onChange: this.onSelectChange,
     }
     return (
-      <div className="app-container">
+      <div className="app-container" id='export-excel--module'>
         <Collapse defaultActiveKey={["1"]}>
           <Panel header="导出选项" key="1">
             <Form layout="inline">

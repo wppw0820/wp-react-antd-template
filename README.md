@@ -85,7 +85,6 @@ npm install
 
 # 启动服务
 npm start
-`
 
 启动完成后会自动打开浏览器访问 [http://localhost:3000](http://localhost:3000)， 你看到下面的页面就代表操作成功了。
 
