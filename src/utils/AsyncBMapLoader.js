@@ -1,5 +1,5 @@
 // 加载除百度地图核心api外的其他插件
-let promise, count = 0
+let count = 0
 // libs百度地图插件列表，需要什么插件加入什么插件的url
 const libs = [
   'http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js',
@@ -23,14 +23,14 @@ const loadLib = (src, resolve, reject) => {
       resolve({ BMap: window.BMap, BMapLib: window.BMapLib, msg: '首次加载地图' })
     }
   }
+  console.log(lib)
   body.appendChild(lib)
 }
 
 export default () => {
-  if (promise) return promise;
-  promise = new Promise((resolve, reject) => {
-    if (window.BMap && Window.BMapLib) {
-      // 已经加载则直接返回
+  return new Promise((resolve, reject) => {
+    if (window.BMap && window.BMapLib) {
+      // 已经加载百度地图与所需插件则直接返回
       resolve({ BMap: window.BMap, BMapLib: window.BMapLib, msg: '本地地图' })
     } else {
       // 异步加载
@@ -49,5 +49,4 @@ export default () => {
       }
     }
   })
-  return promise
 }

@@ -17,7 +17,7 @@ class Amap extends Component {
 
   componentDidMount() {
     asyncAMapLoader().then(res => {
-      // console.log(res)
+      console.log(res)
       this.initMap()
     })
   }
