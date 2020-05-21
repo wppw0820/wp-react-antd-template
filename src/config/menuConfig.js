@@ -42,6 +42,20 @@ export default [
         icon: null,
         iconBeyondAntd: 'icon-D1',
         roles: ["admin", "editor", "guest"],
+      },
+      {
+        title: "three02",
+        path: "/three/three02",
+        icon: null,
+        iconBeyondAntd: 'icon-3d',
+        roles: ["admin", "editor", "guest"],
+      },
+      {
+        title: "VR",
+        path: "/three/VR",
+        icon: null,
+        iconBeyondAntd: 'icon-vr',
+        roles: ["admin", "editor", "guest"],
       }
     ],
   },

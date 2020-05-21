@@ -11,17 +11,12 @@ class Three01 extends Component {
     WIDTH: null,
     HEIGHT: null
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.init()
     window.onresize = () => {
       this.onWindowResize()
     }
   }
-  // setStateSync(this,state) {
-  //   return new Promise((resolve) => {
-  //     this.setState(state, resolve)
-  //   })
-  // }
   async init() {
     const container = document.getElementById('three01-container')
     const camera = new Three.PerspectiveCamera(
@@ -30,11 +25,9 @@ class Three01 extends Component {
       0.01,
       10
     )
+    camera.position.z = 0.6
     await setStateSync(this, { camera })
-    const dataCamera = this.state.camera
-    dataCamera.position.z = 0.6
-    await setStateSync(this, { camera: dataCamera })
-    setStateSync(this, { scene: new Three.Scene() })
+    await setStateSync(this, { scene: new Three.Scene() })
     const geometry = new Three.BoxGeometry(0.2, 0.2, 0.2)
     const material = new Three.MeshNormalMaterial()
     await setStateSync(this, { mesh: new Three.Mesh(geometry, material) })
@@ -44,12 +37,12 @@ class Three01 extends Component {
     container.appendChild(this.state.renderer.domElement)
     this.animate()
   }
-  animate = () => {
+  animate = async () => {
     requestAnimationFrame(this.animate)
     let dataMesh = this.state.mesh
     dataMesh.rotation.x += 0.01
     dataMesh.rotation.y += 0.02
-    this.setState({ mesh: dataMesh })
+    await setStateSync(this, { mesh: dataMesh })
     this.state.renderer.render(this.state.scene, this.state.camera)
   }
   onWindowResize() {
