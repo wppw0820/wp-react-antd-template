@@ -48,3 +48,9 @@ export function getMenuItemInMenuListByProperty(menuList, key, value) {
   }
   return res
 }
+// 同步跟新react的setState方法
+export const setStateSync = (currentReactInstance, currentReactState) => {
+  return new Promise((resolve) => {
+    currentReactInstance.setState(currentReactState, resolve)
+  });
+}
