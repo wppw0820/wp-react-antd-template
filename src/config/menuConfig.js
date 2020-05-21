@@ -112,19 +112,32 @@ export default [
     children: [
       {
         title: "键盘图表",
+        icon: null,
+        iconBeyondAntd: 'icon-gangqin',
         path: "/charts/keyboard",
         roles: ["admin", "editor"],
       },
       {
         title: "折线图",
+        icon: null,
+        iconBeyondAntd: 'icon-zhexiantu',
         path: "/charts/line",
         roles: ["admin", "editor"],
       },
       {
         title: "混合图表",
+        icon: null,
+        iconBeyondAntd: 'icon-hunhe',
         path: "/charts/mix-chart",
         roles: ["admin", "editor"],
       },
+      {
+        title: "echarts--地图",
+        icon: null,
+        iconBeyondAntd: 'icon-ditumap29',
+        path: "/charts/echartsMap",
+        roles: ["admin", "editor"],
+      }
     ],
   },
   {

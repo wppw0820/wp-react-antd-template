@@ -8,6 +8,8 @@ import 'echarts/lib/chart/bar'     // 引入柱状图
 import 'echarts/lib/chart/radar'   // 引入雷达图
 import 'echarts/lib/chart/pie'   // 引入饼状图
 import 'echarts/lib/chart/line'   // 引入折线图
+import 'echarts/map/js/china'    // 引入地图和title组件，图例等组件
+
 
 
 require('echarts/theme/macarons') // echarts theme

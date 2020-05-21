@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "608274",
+      "name": "地图",
+      "font_class": "ditumap29",
+      "unicode": "e67a",
+      "unicode_decimal": 59002
+    },
+    {
+      "icon_id": "4933446",
+      "name": "折线图",
+      "font_class": "zhexiantu",
+      "unicode": "e76c",
+      "unicode_decimal": 59244
+    },
+    {
+      "icon_id": "5203255",
+      "name": "混合",
+      "font_class": "hunhe",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "11757073",
+      "name": "钢琴",
+      "font_class": "gangqin",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
       "icon_id": "705650",
       "name": "3d",
       "font_class": "3d",

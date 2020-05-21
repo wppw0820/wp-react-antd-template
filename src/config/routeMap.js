@@ -18,6 +18,7 @@ const Draggable = Loadable({loader: () => import(/*webpackChunkName:'Draggable'*
 const KeyboardChart = Loadable({loader: () => import(/*webpackChunkName:'KeyboardChart'*/'@/views/charts/keyboard'),loading: Loading})
 const LineChart = Loadable({loader: () => import(/*webpackChunkName:'LineChart'*/'@/views/charts/line'),loading: Loading})
 const MixChart = Loadable({loader: () => import(/*webpackChunkName:'MixChart'*/'@/views/charts/mixChart'),loading: Loading})
+const EchartsMap = Loadable({loader: () => import(/*webpackChunkName:'EchartsMap'*/'@/views/charts/echartsMap'),loading: Loading})
 const Table = Loadable({loader: () => import(/*webpackChunkName:'Table'*/'@/views/table'),loading: Loading})
 const ExportExcel = Loadable({loader: () => import(/*webpackChunkName:'ExportExcel'*/'@/views/excel/exportExcel'),loading: Loading})
 const UploadExcel = Loadable({ loader: () => import(/*webpackChunkName:'UploadExcel'*/'@/views/excel/uploadExcel'),loading: Loading })
@@ -45,6 +46,7 @@ export default [
   { path: "/charts/keyboard", component: KeyboardChart, roles: ["admin","editor"] },
   { path: "/charts/line", component: LineChart, roles: ["admin","editor"] },
   { path: "/charts/mix-chart", component: MixChart, roles: ["admin","editor"] },
+  { path: "/charts/echartsMap", component: EchartsMap, roles: ["admin","editor"] },
   { path: "/table", component: Table, roles: ["admin","editor"] },
   { path: "/excel/export", component: ExportExcel, roles: ["admin","editor"] },
   { path: "/excel/upload", component: UploadExcel, roles: ["admin","editor"] },
