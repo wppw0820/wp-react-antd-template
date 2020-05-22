@@ -22,9 +22,8 @@
   - Screenfull全屏
   - 自适应收缩侧边栏
 
-- 编辑器
-  - 富文本
-  - Markdown
+- AMap（高德地图）
+- BMap（百度地图）
 
 - Excel
   - 导出excel
@@ -38,7 +37,8 @@
   - 404
 
 - 组件
-  - 拖拽列表
+  - 富文本
+  - Markdown
 
 - 表格
 - Dashboard

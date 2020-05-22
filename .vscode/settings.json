@@ -9,7 +9,7 @@
     "**/vue.config.js": false,
     "**/babel.config.js": true,
     "**/LICENSE": true,
-    "**/.travis.yml": true,
+    // "**/.travis.yml": true,
     "**/.eslintrc.js": true,
     "**/jest.config.js": true,
     "**/jsconfig.json": true,
