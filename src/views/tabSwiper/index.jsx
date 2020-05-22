@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Icon, Drawer } from "antd";
-import "./index.less";
+import TabSwiperUI from "./tabSwiperUI";
 
 export default class index extends Component {
   state = {
@@ -30,7 +29,8 @@ export default class index extends Component {
     drawerPlacement: "right",
   };
   handleTabItemClick = (item) => {
-    console.log(item);
+    // 点击抽屉某一项，页面对应的tab跟随切换到视野内scrollIntoView()
+    document.getElementById(item.id).scrollIntoView();
     this.activeTabClass(item);
     this.subTabChange(item);
   };
@@ -73,60 +73,16 @@ export default class index extends Component {
   };
   render() {
     return (
-      <div className="app-container" id="tab-swiper-module">
-        <div className="tabbar-area">
-          <div className="swiper-bar">
-            {this.state.tabListOpts.map((item) => {
-              return (
-                <div
-                  className={`tab-item ${item.active ? "active" : null}`}
-                  key={item.id}
-                  onClick={this.handleTabItemClick.bind(null, item)}
-                >
-                  {item.label + item.id}
-                </div>
-              );
-            })}
-          </div>
-          <div className="icon-show-all" onClick={this.handleIconClick}>
-            <Icon type="unordered-list" />
-          </div>
-          <div className="sub-tab-list">
-            {this.state.subListOpts.map((subitem) => {
-              return (
-                <div
-                  className={`sub-tab-item ${subitem.active ? "active" : null}`}
-                  key={subitem.id}
-                  onClick={this.handleSubItemClick.bind(null, subitem)}
-                >
-                  {subitem.label}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <Drawer
-          title="请选择"
-          placement={this.state.drawerPlacement}
-          closable={false}
-          onClose={this.onClose}
-          visible={this.state.drawerVisible}
-          className="drawer-in-tab-swiper"
-        >
-          {this.state.tabListOpts.map((tab) => {
-            return (
-              <p
-                key={tab.id}
-                title={tab.label + tab.id}
-                onClick={this.handleTabItemClick.bind(null, tab)}
-                className={`tab-item ${tab.active ? "active" : null}`}
-              >
-                {tab.label + tab.id}
-              </p>
-            );
-          })}
-        </Drawer>
-      </div>
+      <TabSwiperUI
+        tabListOpts={this.state.tabListOpts}
+        subListOpts={this.state.subListOpts}
+        drawerVisible={this.state.drawerVisible}
+        drawerPlacement={this.state.drawerPlacement}
+        handleTabItemClick={this.handleTabItemClick}
+        handleIconClick={this.handleIconClick}
+        handleSubItemClick={this.handleSubItemClick}
+        onClose={this.onClose}
+      />
     );
   }
 }
