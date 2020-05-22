@@ -30,7 +30,7 @@ export default class index extends Component {
   };
   handleTabItemClick = (item) => {
     // 点击抽屉某一项，页面对应的tab跟随切换到视野内scrollIntoView()
-    document.getElementById(item.id).scrollIntoView();
+    document.getElementById(item.id).scrollIntoView({ behavior: "smooth" });
     this.activeTabClass(item);
     this.subTabChange(item);
   };
