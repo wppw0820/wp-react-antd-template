@@ -141,13 +141,13 @@ class Bmap extends Component {
       //如果没有打开，则监听打开事件，获取按钮，添加事件
       infoWindow.addEventListener('open', function () {
         document.getElementById(dataId).onclick = function (e) {
-          console.log('infoWindow noopened：')
+          console.log('infoWindow noopened：',dataId)
         }
       })
     } else {
       //如果已经打开，直接获取按钮，添加事件
       document.getElementById(dataId).onclick = function (e) {
-        console.log('infoWindow opened：')
+        console.log('infoWindow opened：',dataId)
       }
     }
     this.state.mapRef.openInfoWindow(infoWindow, point) //开启信息窗口
@@ -228,9 +228,7 @@ class Bmap extends Component {
   }
   // 返回地图中心点（当前定位点）
   backToMapCenter = () => {
-    const vm = this
-    console.log(vm.state.currentPositionPointsObj)
-    vm.state.mapRef.panTo(vm.state.currentPositionPointsObj)
+    this.state.mapRef.panTo(this.state.currentPositionPointsObj)
   }
   // 画圆
   drawCircle(

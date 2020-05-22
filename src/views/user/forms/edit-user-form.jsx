@@ -23,7 +23,7 @@ class EditUserForm extends Component {
     }
     return (
       <Modal
-        title="编辑"
+        title="编辑用户"
         visible={visible}
         onCancel={onCancel}
         onOk={onOk}

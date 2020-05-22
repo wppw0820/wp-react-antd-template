@@ -24,7 +24,7 @@ class EchartsMap extends Component {
   initMapEchart() {
     // 获取echarts容器与其引用
     const mapEchartsContainer = document.getElementById('echartsMap-container')
-    const mapEchartsRef = Echarts.init(mapEchartsContainer, 'theme_02')
+    const mapEchartsRef = Echarts.init(mapEchartsContainer, 'theme_01')
     this.generateMapData().then(res => {
       // console.log(res)
       mapOpts.series = res
@@ -88,6 +88,7 @@ class EchartsMap extends Component {
         [{ name: '深圳' }, { name: '鄂尔多斯', value: 20 }],
         [{ name: '深圳' }, { name: '拉萨', value: 10 }]
       ]
+
       let series = [];
       [
         ['北京', BJData],

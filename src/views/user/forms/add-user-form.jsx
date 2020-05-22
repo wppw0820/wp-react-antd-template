@@ -31,7 +31,7 @@ class AddUserForm extends Component {
     }
     return (
       <Modal
-        title="编辑"
+        title="新增用户"
         visible={visible}
         onCancel={onCancel}
         onOk={onOk}

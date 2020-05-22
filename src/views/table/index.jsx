@@ -9,13 +9,15 @@ import {
   Pagination,
   Divider,
   message,
-  Select
+  Select,
+  Modal
 } from "antd"
-import { tableList, deleteItem,editItem } from "@/api/table"
+import { tableList, deleteItem, editItem } from "@/api/table"
 import EditForm from "./forms/editForm"
 import './index.less'
 const { Column } = Table
 const { Panel } = Collapse
+const { confirm } = Modal
 class TableComponent extends Component {
   _isMounted = false // 这个变量是用来标志当前组件是否挂载
   state = {
@@ -27,7 +29,7 @@ class TableComponent extends Component {
       pageSize: 10,
       title: "",
       star: "",
-      status:""
+      status: ""
     },
     editModalVisible: false,
     editModalLoading: false,
@@ -64,7 +66,7 @@ class TableComponent extends Component {
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
-        title:value,
+        title: value,
       }
     }))
   }
@@ -72,15 +74,15 @@ class TableComponent extends Component {
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
-        status:value,
+        status: value,
       }
     }))
   }
-  filterStarChange  = (value) => {
+  filterStarChange = (value) => {
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
-        star:value,
+        star: value,
       }
     }))
   }
@@ -111,14 +113,21 @@ class TableComponent extends Component {
     )
   }
   handleDelete = (row) => {
-    deleteItem({id:row.id}).then(res => {
-      message.success("删除成功")
-      this.fetchData()
+    const vm = this
+    confirm({
+      title: '确认删除当前项？',
+      onOk() {
+        deleteItem({ id: row.id }).then(() => {
+          message.success("删除成功")
+          vm.fetchData()
+        })
+      },
+      onCancel() { }
     })
   }
   handleEdit = (row) => {
     this.setState({
-      currentRowData:Object.assign({}, row),
+      currentRowData: Object.assign({}, row),
       editModalVisible: true,
     })
   }
@@ -143,7 +152,7 @@ class TableComponent extends Component {
       }).catch(e => {
         message.success("编辑失败,请重试!")
       })
-      
+
     })
   }
 
@@ -194,12 +203,12 @@ class TableComponent extends Component {
           loading={this.state.loading}
           pagination={false}
         >
-          <Column title="序号" dataIndex="id" key="id" width={200} align="center" sorter={(a, b) => a.id - b.id}/>
-          <Column title="标题" dataIndex="title" key="title" width={200} align="center"/>
-          <Column title="作者" dataIndex="author" key="author" width={100} align="center"/>
-          <Column title="阅读量" dataIndex="readings" key="readings" width={195} align="center"/>
-          <Column title="推荐指数" dataIndex="star" key="star" width={195} align="center"/>
-          <Column title="状态" dataIndex="status" key="status" width={195} align="center" render={(status) => {
+          <Column title="序号" dataIndex="id" key="id" width={100} align="center" sorter={(a, b) => a.id - b.id} />
+          <Column title="标题" dataIndex="title" key="title" align="center" />
+          <Column title="作者" dataIndex="author" key="author" width={80} align="center" />
+          <Column title="阅读量" dataIndex="readings" key="readings" width={100} align="center" />
+          <Column title="推荐指数" dataIndex="star" key="star" width={100} align="center" />
+          <Column title="状态" dataIndex="status" key="status" width={120} align="center" render={(status) => {
             let color =
               status === "published" ? "green" : status === "deleted" ? "red" : ""
             return (
@@ -207,15 +216,16 @@ class TableComponent extends Component {
                 {status}
               </Tag>
             )
-          }}/>
-          <Column title="时间" dataIndex="date" key="date" width={195} align="center"/>
-          <Column title="操作" key="action" width={195} align="center"render={(text, row) => (
+          }} />
+          <Column title="时间" dataIndex="date" key="date" align="center" />
+          <Column title="操作" key="action" width={180} align="center" render={(text, row) => (
             <span>
-              <Button type="primary" shape="circle" icon="edit" title="编辑" onClick={this.handleEdit.bind(null,row)}/>
+              {/* 两种方案处理函数传参  1、箭头函数，2、bind创建并返回一个新函数 */}
+              <Button type="primary" shape="circle" icon="edit" title="编辑" onClick={this.handleEdit.bind(null, row)} />
               <Divider type="vertical" />
-              <Button type="primary" shape="circle" icon="delete" title="删除" onClick={this.handleDelete.bind(null,row)}/>
+              <Button type="primary" shape="circle" icon="delete" title="删除" onClick={()=>this.handleDelete(row)} />
             </span>
-          )}/>
+          )} />
         </Table>
         <br />
         <Pagination
@@ -236,7 +246,7 @@ class TableComponent extends Component {
           confirmLoading={this.state.editModalLoading}
           onCancel={this.handleCancel}
           onOk={this.handleOk}
-        />  
+        />
       </div>
     )
   }

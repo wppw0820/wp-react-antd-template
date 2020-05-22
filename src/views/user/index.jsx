@@ -15,6 +15,7 @@ class User extends Component {
     addUserModalVisible: false,
     addUserModalLoading: false,
   }
+  
   getUsers = async () => {
     const result = await getUsers()
     const { users, status } = result.data
@@ -24,6 +25,7 @@ class User extends Component {
       })
     }
   }
+
   handleEditUser = (row) => {
     this.setState({
       currentRowData: Object.assign({}, row),

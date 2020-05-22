@@ -23,7 +23,6 @@ const loadLib = (src, resolve, reject) => {
       resolve({ BMap: window.BMap, BMapLib: window.BMapLib, msg: '首次加载地图' })
     }
   }
-  console.log(lib)
   body.appendChild(lib)
 }
 

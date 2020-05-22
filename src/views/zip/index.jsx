@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Table, Tag, Form, Icon, Button, Input, message, Collapse } from "antd"
 import { excelList } from "@/api/excel"
+import './index.less'
 const { Panel } = Collapse
 const columns = [
   {
@@ -41,7 +42,6 @@ const columns = [
   },
 ]
 class Zip extends Component {
-  _isMounted = false // 这个变量是用来标志当前组件是否挂载
   state = {
     list: [],
     filename: "file",
@@ -49,24 +49,22 @@ class Zip extends Component {
     selectedRows: [],
     selectedRowKeys: [],
   }
+
   fetchData = () => {
     excelList().then((response) => {
       const list = response.data.data.items
-      if (this._isMounted) {
-        this.setState({ list })
-      }
+      this.setState({ list })
     })
   }
+
   componentDidMount() {
-    this._isMounted = true
     this.fetchData()
   }
-  componentWillUnmount() {
-    this._isMounted = false
-  }
+
   onSelectChange = (selectedRowKeys, selectedRows) => {
     this.setState({ selectedRows, selectedRowKeys })
   }
+
   handleDownload = (type) => {
     if (type === "selected" && this.state.selectedRowKeys.length === 0) {
       message.error("至少选择一项进行导出")
@@ -94,14 +92,17 @@ class Zip extends Component {
       })
     })
   }
+
   formatJson(filterVal, jsonData) {
     return jsonData.map((v) => filterVal.map((j) => v[j]))
   }
+
   filenameChange = (e) => {
     this.setState({
       filename: e.target.value,
     })
   }
+  
   render() {
     const { selectedRowKeys } = this.state
     const rowSelection = {
@@ -109,7 +110,7 @@ class Zip extends Component {
       onChange: this.onSelectChange,
     }
     return (
-      <div className="app-container">
+      <div className="app-container" id="zip-module">
         <Collapse defaultActiveKey={["1"]}>
           <Panel header="导出选项" key="1">
             <Form layout="inline">
