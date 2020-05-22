@@ -181,5 +181,12 @@ export default [
     path: "/user",
     icon: "usergroup-add",
     roles: ["admin"]
+  },
+  {
+    title: "tab-swiper",
+    path: "/tabSwiper",
+    icon: null,
+    iconBeyondAntd: 'icon-gesture_swipe-right-h',
+    roles: ["admin"]
   }
 ]

@@ -47,7 +47,7 @@ class Meun extends Component {
             <Menu.Item key={item.path}>
               <Link to={item.path}>
               {item.iconBeyondAntd ? <i className={'iconfont '+item.iconBeyondAntd} style={{marginRight:'10px',fontSize:'14px'}}/> : item.icon ? <Icon type={item.icon}/> : null}
-                <span>{item.title}</span>
+                <span className="menu-title">{item.title}</span>
               </Link>
             </Menu.Item>
           )
@@ -70,7 +70,7 @@ class Meun extends Component {
               title={
                 <span>
                   {item.iconBeyondAntd ? <i className={'iconfont '+item.iconBeyondAntd} style={{marginRight:'10px',fontSize:'14px'}}/> : item.icon ? <Icon type={item.icon}/> : null}
-                  <span>{item.title}</span>
+                  <span className="menu-title">{item.title}</span>
                 </span>
               }
             >

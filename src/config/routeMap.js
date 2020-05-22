@@ -24,8 +24,9 @@ const ExportExcel = Loadable({loader: () => import(/*webpackChunkName:'ExportExc
 const UploadExcel = Loadable({ loader: () => import(/*webpackChunkName:'UploadExcel'*/'@/views/excel/uploadExcel'),loading: Loading })
 const Zip = Loadable({loader: () => import(/*webpackChunkName:'Zip'*/'@/views/zip'),loading: Loading})
 const Clipboard = Loadable({loader: () => import(/*webpackChunkName:'Clipboard'*/'@/views/clipboard'),loading: Loading})
-const Error404 = Loadable({loader: () => import(/*webpackChunkName:'Error404'*/'@/views/error/404'),loading: Loading})
 const User = Loadable({loader: () => import(/*webpackChunkName:'User'*/'@/views/user'),loading: Loading})
+const TabSwiper = Loadable({loader: () => import(/*webpackChunkName:'TabSwiper'*/'@/views/tabSwiper'),loading: Loading})
+const Error404 = Loadable({loader: () => import(/*webpackChunkName:'Error404'*/'@/views/error/404'),loading: Loading})
 
 export default [
   { path: "/dashboard", component: Dashboard, roles: ["admin","editor","guest"] },
@@ -53,5 +54,6 @@ export default [
   { path: "/zip", component: Zip, roles: ["admin","editor"] },
   { path: "/clipboard", component: Clipboard, roles: ["admin","editor"] },
   { path: "/user", component: User, roles: ["admin"] },
+  { path: "/tabSwiper", component: TabSwiper, roles: ["admin"] },
   { path: "/error/404", component: Error404 }
 ]

@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1683068",
+      "name": "gesture_swipe-right-h",
+      "font_class": "gesture_swipe-right-h",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
       "icon_id": "608274",
       "name": "地图",
       "font_class": "ditumap29",
