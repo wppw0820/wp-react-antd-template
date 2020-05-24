@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
 import {
   Table,
   Tag,
@@ -10,16 +10,16 @@ import {
   Divider,
   message,
   Select,
-  Modal
-} from "antd"
-import { tableList, deleteItem, editItem } from "@/api/table"
-import EditForm from "./forms/editForm"
-import './index.less'
-const { Column } = Table
-const { Panel } = Collapse
-const { confirm } = Modal
+  Modal,
+} from "antd";
+import { tableList, deleteItem, editItem } from "@/api/table";
+import { setStateSync } from "@/utils/index";
+import EditForm from "./forms/editForm";
+import "./index.less";
+const { Column } = Table;
+const { Panel } = Collapse;
+const { confirm } = Modal;
 class TableComponent extends Component {
-  _isMounted = false // 这个变量是用来标志当前组件是否挂载
   state = {
     list: [],
     loading: false,
@@ -29,7 +29,7 @@ class TableComponent extends Component {
       pageSize: 10,
       title: "",
       star: "",
-      status: ""
+      status: "",
     },
     editModalVisible: false,
     editModalLoading: false,
@@ -40,130 +40,116 @@ class TableComponent extends Component {
       readings: 0,
       star: "★",
       status: "published",
-      title: ""
-    }
-  }
+      title: "",
+    },
+  };
   fetchData = () => {
-    this.setState({ loading: true })
+    this.setState({ loading: true });
     tableList(this.state.listQuery).then((response) => {
-      this.setState({ loading: false })
-      const list = response.data.data.items
-      const total = response.data.data.total
-      if (this._isMounted) {
-        this.setState({ list, total })
-      }
-    })
-  }
+      this.setState({ loading: false });
+      const { list, total } = response.data.data;
+      this.setState({ list, total });
+    });
+  };
   componentDidMount() {
-    this._isMounted = true
-    this.fetchData()
-  }
-  componentWillUnmount() {
-    this._isMounted = false
+    this.fetchData();
   }
   filterTitleChange = (e) => {
-    let value = e.target.value
+    const title = e.target.value;
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
-        title: value,
-      }
-    }))
-  }
+        title,
+      },
+    }));
+  };
   filterStatusChange = (value) => {
+    const status = value
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
-        status: value,
-      }
-    }))
-  }
+        status,
+      },
+    }));
+  };
   filterStarChange = (value) => {
+    const star = value
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
-        star: value,
-      }
-    }))
-  }
-  changePage = (pageNumber, pageSize) => {
-    this.setState(
-      (state) => ({
-        listQuery: {
-          ...state.listQuery,
-          pageNumber,
-        },
-      }),
-      () => {
-        this.fetchData()
-      }
-    )
-  }
-  changePageSize = (current, pageSize) => {
-    this.setState(
-      (state) => ({
-        listQuery: {
-          ...state.listQuery,
-          pageSize,
-        },
-      }),
-      () => {
-        this.fetchData()
-      }
-    )
-  }
+        star,
+      },
+    }));
+  };
+  changePage = async (pageNumber, pageSize) => {
+    const listQuery = {
+      ...this.state.listQuery,
+      pageNumber,
+    };
+    await setStateSync(this, { listQuery });
+    this.fetchData();
+  };
+  changePageSize = async (current, pageSize) => {
+    const listQuery = {
+      ...this.state.listQuery,
+      pageSize,
+    };
+    await setStateSync(this, { listQuery });
+    this.fetchData();
+  };
   handleDelete = (row) => {
-    const vm = this
+    const vm = this;
     confirm({
-      title: '确认删除当前项？',
+      title: "确认删除当前项？",
       onOk() {
         deleteItem({ id: row.id }).then(() => {
-          message.success("删除成功")
-          vm.fetchData()
-        })
+          message.success("删除成功");
+          vm.fetchData();
+        });
       },
-      onCancel() { }
-    })
-  }
+      onCancel() {},
+    });
+  };
   handleEdit = (row) => {
     this.setState({
       currentRowData: Object.assign({}, row),
       editModalVisible: true,
-    })
-  }
+    });
+  };
 
-  handleOk = _ => {
-    const { form } = this.formRef.props
+  handleOk = (_) => {
+    const { form } = this.formRef.props;
     form.validateFields((err, fieldsValue) => {
       if (err) {
-        return
+        return;
       }
       const values = {
         ...fieldsValue,
-        'star': "".padStart(fieldsValue['star'], '★'),
-        'date': fieldsValue['date'].format('YYYY-MM-DD HH:mm:ss'),
-      }
-      this.setState({ editModalLoading: true, })
-      editItem(values).then((response) => {
-        form.resetFields()
-        this.setState({ editModalVisible: false, editModalLoading: false })
-        message.success("编辑成功!")
-        this.fetchData()
-      }).catch(e => {
-        message.success("编辑失败,请重试!")
-      })
+        star: "".padStart(fieldsValue["star"], "★"),
+        date: fieldsValue["date"].format("YYYY-MM-DD HH:mm:ss"),
+      };
+      this.setState({ editModalLoading: true });
+      editItem(values)
+        .then((response) => {
+          form.resetFields();
+          this.setState({ editModalVisible: false, editModalLoading: false });
+          message.success("编辑成功!");
+          this.fetchData();
+        })
+        .catch((e) => {
+          message.success("编辑失败,请重试!");
+        });
+    });
+  };
 
-    })
-  }
-
-  handleCancel = _ => {
+  handleCancel = (_) => {
     this.setState({
       editModalVisible: false,
-    })
-  }
+    });
+  };
   render() {
     return (
-      <div className="app-container" id='table-module'>
+      <div className="app-container" id="table-module">
         <Collapse defaultActiveKey={["1"]}>
           <Panel header="筛选" key="1">
             <Form layout="inline">
@@ -173,15 +159,14 @@ class TableComponent extends Component {
               <Form.Item label="类型:">
                 <Select
                   style={{ width: 120 }}
-                  onChange={this.filterStatusChange}>
+                  onChange={this.filterStatusChange}
+                >
                   <Select.Option value="published">published</Select.Option>
                   <Select.Option value="draft">draft</Select.Option>
                 </Select>
               </Form.Item>
               <Form.Item label="推荐指数:">
-                <Select
-                  style={{ width: 120 }}
-                  onChange={this.filterStarChange}>
+                <Select style={{ width: 120 }} onChange={this.filterStarChange}>
                   <Select.Option value={1}>★</Select.Option>
                   <Select.Option value={2}>★★</Select.Option>
                   <Select.Option value={3}>★★★</Select.Option>
@@ -203,29 +188,83 @@ class TableComponent extends Component {
           loading={this.state.loading}
           pagination={false}
         >
-          <Column title="序号" dataIndex="id" key="id" width={100} align="center" sorter={(a, b) => a.id - b.id} />
+          <Column
+            title="序号"
+            dataIndex="id"
+            key="id"
+            width={100}
+            align="center"
+            sorter={(a, b) => a.id - b.id}
+          />
           <Column title="标题" dataIndex="title" key="title" align="center" />
-          <Column title="作者" dataIndex="author" key="author" width={80} align="center" />
-          <Column title="阅读量" dataIndex="readings" key="readings" width={100} align="center" />
-          <Column title="推荐指数" dataIndex="star" key="star" width={100} align="center" />
-          <Column title="状态" dataIndex="status" key="status" width={120} align="center" render={(status) => {
-            let color =
-              status === "published" ? "green" : status === "deleted" ? "red" : ""
-            return (
-              <Tag color={color} key={status}>
-                {status}
-              </Tag>
-            )
-          }} />
+          <Column
+            title="作者"
+            dataIndex="author"
+            key="author"
+            width={80}
+            align="center"
+          />
+          <Column
+            title="阅读量"
+            dataIndex="readings"
+            key="readings"
+            width={100}
+            align="center"
+          />
+          <Column
+            title="推荐指数"
+            dataIndex="star"
+            key="star"
+            width={100}
+            align="center"
+          />
+          <Column
+            title="状态"
+            dataIndex="status"
+            key="status"
+            width={120}
+            align="center"
+            render={(status) => {
+              let color =
+                status === "published"
+                  ? "green"
+                  : status === "deleted"
+                  ? "red"
+                  : "";
+              return (
+                <Tag color={color} key={status}>
+                  {status}
+                </Tag>
+              );
+            }}
+          />
           <Column title="时间" dataIndex="date" key="date" align="center" />
-          <Column title="操作" key="action" width={180} align="center" render={(text, row) => (
-            <span>
-              {/* 两种方案处理函数传参  1、箭头函数，2、bind创建并返回一个新函数 */}
-              <Button type="primary" shape="circle" icon="edit" title="编辑" onClick={this.handleEdit.bind(null, row)} />
-              <Divider type="vertical" />
-              <Button type="primary" shape="circle" icon="delete" title="删除" onClick={()=>this.handleDelete(row)} />
-            </span>
-          )} />
+          <Column
+            title="操作"
+            key="action"
+            width={180}
+            align="center"
+            render={(text, row) => (
+              <span>
+                {/* 两种方案处理函数传参  1、箭头函数，2、bind创建并返回一个新函数 */}
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon="edit"
+                  title="编辑"
+                  onClick={this.handleEdit.bind(null, row)}
+                />
+                <Divider type="vertical" />
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon="delete"
+                  title="删除"
+                  onClick={() => this.handleDelete(row)}
+                />
+              </span>
+            )}
+          />
         </Table>
         <br />
         <Pagination
@@ -241,15 +280,15 @@ class TableComponent extends Component {
         />
         <EditForm
           currentRowData={this.state.currentRowData}
-          wrappedComponentRef={formRef => this.formRef = formRef}
+          wrappedComponentRef={(formRef) => (this.formRef = formRef)}
           visible={this.state.editModalVisible}
           confirmLoading={this.state.editModalLoading}
           onCancel={this.handleCancel}
           onOk={this.handleOk}
         />
       </div>
-    )
+    );
   }
 }
 
-export default TableComponent
+export default TableComponent;

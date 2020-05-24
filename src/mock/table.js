@@ -20,20 +20,20 @@ export default {
     const { pageNumber, pageSize, title, status, star } = JSON.parse(
       config.body
     )
-    let start = (pageNumber - 1) * pageSize
-    let end = pageNumber * pageSize
-    let mockList = List.filter((item) => {
+    const start = (pageNumber - 1) * pageSize
+    const end = pageNumber * pageSize
+    const mockList = List.filter((item) => {
       if (star && item.star.length !== star) return false
       if (status && item.status !== status) return false
       if (title && item.title.indexOf(title) < 0) return false
       return true
     })
-    let pageList = mockList.slice(start, end)
+    const pageList = mockList.slice(start, end)
     return {
       code: 20000,
       data: {
         total: mockList.length,
-        items: pageList,
+        list: pageList,
       },
     }
   },
