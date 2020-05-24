@@ -1,36 +1,25 @@
 import React, { Component } from "react";
 import TabSwiperUI from "./tabSwiperUI";
+import { setStateSync } from "@/utils/index";
+import { tabListOpts, subListOpts } from "./dataSouce";
 
 export default class index extends Component {
+  constructor(props) {
+    super(props);
+    this.state.tabListOpts = [...tabListOpts];
+    this.state.subListOpts = [...subListOpts];
+  }
   state = {
-    tabListOpts: [
-      { label: "tabSwiper", active: true, id: "1" },
-      { label: "tabSwiper", active: false, id: "2" },
-      { label: "tabSwiper", active: false, id: "3" },
-      { label: "tabSwiper", active: false, id: "4" },
-      { label: "tabSwiper", active: false, id: "5" },
-      { label: "tabSwiper", active: false, id: "6" },
-      { label: "tabSwiper", active: false, id: "7" },
-      { label: "tabSwiper", active: false, id: "8" },
-      { label: "tabSwiper", active: false, id: "9" },
-      { label: "tabSwiper", active: false, id: "15" },
-      { label: "tabSwiper", active: false, id: "115" },
-      { label: "tabSwiper", active: false, id: "225" },
-      { label: "tabSwiper", active: false, id: "2225" },
-      { label: "tabSwiper", active: false, id: "222225" },
-      { label: "tabSwiper", active: false, id: "22222225" },
-      { label: "tabSwiper", active: false, id: "25" },
-    ],
-    subListOpts: [
-      { label: "subtabSwiper", active: true, id: "subtabSwiper1" },
-      { label: "subtabSwiper", active: false, id: "subtabSwiper2" },
-    ],
+    tabListOpts: null,
+    subListOpts: null,
     drawerVisible: false,
     drawerPlacement: "right",
   };
-  handleTabItemClick = (item) => {
+  handleTabItemClick = async (item) => {
     // 点击抽屉某一项，页面对应的tab跟随切换到视野内scrollIntoView()
     document.getElementById(item.id).scrollIntoView({ behavior: "smooth" });
+    const subListOpts = [...item.subListOpts];
+    await setStateSync(this, subListOpts);
     this.activeTabClass(item);
     this.subTabChange(item);
   };

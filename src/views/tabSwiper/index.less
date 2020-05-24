@@ -12,6 +12,7 @@
         padding: 0 14px;
         color: #ffffff;
         cursor: pointer;
+        transition:0.7s;
         &.active {
           color: @theme-color;
           font-size: 20px;
@@ -39,12 +40,15 @@
       .sub-tab-item {
         padding: 4px 14px;
         border-radius: 30px;
-        background: #efefef;
+        background: #fff;
         display: inline-block;
         margin-right: 8px;
         cursor: pointer;
+        transition:0.7s;
+        border: 1px solid #fff;
         &.active {
           color: @theme-color;
+          border: 1px solid @theme-color;
         }
       }
     }
@@ -60,6 +64,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
+    transition:0.7s;
     &.active {
       color: @theme-color;
       font-size: 20px;
