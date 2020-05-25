@@ -33,6 +33,98 @@ class TableComponent extends Component {
     },
     editModalVisible: false,
     editModalLoading: false,
+    columns: [
+      {
+        title: "序号",
+        id: "id",
+        dataIndex: "id",
+        key: "id",
+        width: 100,
+        sorter: (a, b) => a.id - b.id,
+        align: "center",
+      },
+      {
+        title: "标题",
+        dataIndex: "title",
+        key: "title",
+        width: 180,
+        align: "center",
+      },
+      {
+        title: "作者",
+        dataIndex: "author",
+        key: "author",
+        width: 80,
+        align: "center",
+      },
+      {
+        title: "阅读量",
+        dataIndex: "readings",
+        key: "readings",
+        width: 100,
+        align: "center",
+      },
+      {
+        title: "推荐指数",
+        dataIndex: "star",
+        key: "star",
+        width: 100,
+        align: "center",
+      },
+      {
+        title: "状态",
+        dataIndex: "status",
+        key: "status",
+        width: 120,
+        align: "center",
+        render: (status) => {
+          let color =
+            status === "published"
+              ? "green"
+              : status === "deleted"
+              ? "red"
+              : "";
+          return (
+            <Tag color={color} key={status}>
+              {status}
+            </Tag>
+          );
+        },
+      },
+      {
+        title: "时间",
+        dataIndex: "date",
+        key: "date",
+        align: "center",
+      },
+      {
+        title: "操作",
+        dataIndex: "action",
+        key: "action",
+        align: "center",
+        width: 180,
+        render: (text, row) => (
+          <span>
+            {/* 两种方案处理函数传参  1、箭头函数，2、bind创建并返回一个新函数 */}
+            <Button
+              type="primary"
+              shape="circle"
+              icon="edit"
+              title="编辑"
+              onClick={this.handleEdit.bind(null, row)}
+            />
+            <Divider type="vertical" />
+            <Button
+              type="primary"
+              shape="circle"
+              icon="delete"
+              title="删除"
+              onClick={() => this.handleDelete(row)}
+            />
+          </span>
+        ),
+      },
+    ],
     currentRowData: {
       id: 0,
       author: "",
@@ -46,6 +138,7 @@ class TableComponent extends Component {
   fetchData = () => {
     this.setState({ loading: true });
     tableList(this.state.listQuery).then((response) => {
+      console.log(response);
       this.setState({ loading: false });
       const { list, total } = response.data.data;
       this.setState({ list, total });
@@ -64,7 +157,7 @@ class TableComponent extends Component {
     }));
   };
   filterStatusChange = (value) => {
-    const status = value
+    const status = value;
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
@@ -73,7 +166,7 @@ class TableComponent extends Component {
     }));
   };
   filterStarChange = (value) => {
-    const star = value
+    const star = value;
     this.setState((state) => ({
       listQuery: {
         ...state.listQuery,
@@ -154,19 +247,24 @@ class TableComponent extends Component {
           <Panel header="筛选" key="1">
             <Form layout="inline">
               <Form.Item label="标题:">
-                <Input onChange={this.filterTitleChange} />
+                <Input onChange={this.filterTitleChange} allowClear />
               </Form.Item>
               <Form.Item label="类型:">
                 <Select
                   style={{ width: 120 }}
                   onChange={this.filterStatusChange}
+                  allowClear
                 >
                   <Select.Option value="published">published</Select.Option>
                   <Select.Option value="draft">draft</Select.Option>
                 </Select>
               </Form.Item>
               <Form.Item label="推荐指数:">
-                <Select style={{ width: 120 }} onChange={this.filterStarChange}>
+                <Select
+                  style={{ width: 120 }}
+                  onChange={this.filterStarChange}
+                  allowClear
+                >
                   <Select.Option value={1}>★</Select.Option>
                   <Select.Option value={2}>★★</Select.Option>
                   <Select.Option value={3}>★★★</Select.Option>
@@ -188,83 +286,19 @@ class TableComponent extends Component {
           loading={this.state.loading}
           pagination={false}
         >
-          <Column
-            title="序号"
-            dataIndex="id"
-            key="id"
-            width={100}
-            align="center"
-            sorter={(a, b) => a.id - b.id}
-          />
-          <Column title="标题" dataIndex="title" key="title" align="center" />
-          <Column
-            title="作者"
-            dataIndex="author"
-            key="author"
-            width={80}
-            align="center"
-          />
-          <Column
-            title="阅读量"
-            dataIndex="readings"
-            key="readings"
-            width={100}
-            align="center"
-          />
-          <Column
-            title="推荐指数"
-            dataIndex="star"
-            key="star"
-            width={100}
-            align="center"
-          />
-          <Column
-            title="状态"
-            dataIndex="status"
-            key="status"
-            width={120}
-            align="center"
-            render={(status) => {
-              let color =
-                status === "published"
-                  ? "green"
-                  : status === "deleted"
-                  ? "red"
-                  : "";
-              return (
-                <Tag color={color} key={status}>
-                  {status}
-                </Tag>
-              );
-            }}
-          />
-          <Column title="时间" dataIndex="date" key="date" align="center" />
-          <Column
-            title="操作"
-            key="action"
-            width={180}
-            align="center"
-            render={(text, row) => (
-              <span>
-                {/* 两种方案处理函数传参  1、箭头函数，2、bind创建并返回一个新函数 */}
-                <Button
-                  type="primary"
-                  shape="circle"
-                  icon="edit"
-                  title="编辑"
-                  onClick={this.handleEdit.bind(null, row)}
-                />
-                <Divider type="vertical" />
-                <Button
-                  type="primary"
-                  shape="circle"
-                  icon="delete"
-                  title="删除"
-                  onClick={() => this.handleDelete(row)}
-                />
-              </span>
-            )}
-          />
+          {this.state.columns.map((col) => {
+            return (
+              <Column
+                title={col.title}
+                dataIndex={col.dataIndex}
+                key={col.id}
+                width={col.width}
+                align={col.align}
+                sorter={col.sorter}
+                render={col.render}
+              />
+            );
+          })}
         </Table>
         <br />
         <Pagination
